@@ -16,6 +16,12 @@ class LinkedList
     void Append(int data);
     void Display();
     int Size();
+    int Size(Node* head);
+    Node* GetHeadNode();
+
+    //Algorihms
+    void Reverse();
+    Node* NthNodeFromEnd(Node* head, int n);
   private:
   Node* CreateNode(int data);
   Node* Head;

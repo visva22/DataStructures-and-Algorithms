@@ -132,3 +132,64 @@ void LinkedList::Display() //O(n)
     temp = temp->Next;
   }
 }
+
+void LinkedList::Reverse() // O(n)
+{
+  if((Length > 0) and (Length not_eq 1)) 
+  {
+    Node* firstNode =  Head; // Iteratig every 2 nodes and reversing the connection from Head Node.
+    Node* secondNode =  Head->Next;
+    while(secondNode not_eq nullptr)
+    {
+      Node* temp = secondNode->Next;
+      secondNode->Next = firstNode;
+      firstNode = secondNode;
+      secondNode =  temp;
+    }
+    Tail = Head;
+    Head = firstNode;
+    Tail->Next = nullptr;
+  }
+}
+
+int LinkedList::Size(Node* head)
+{
+  int length = 0;
+  Node* temp = head;
+  while(temp not_eq nullptr)
+  {
+    length++;
+    temp = temp->Next;
+  }
+  return length;
+}
+
+Node* LinkedList::NthNodeFromEnd(Node* head, int n)
+{  
+  Node* frontItr =  head;
+  Node* backItr = head;
+  if(n > Size(head))
+  {
+    std::cout << "error invalid index " << std::endl;
+    return nullptr;
+  }
+  else
+  {
+    for(int i = 0; i< n-1; i++)
+    {
+      frontItr = frontItr->Next;// total length will be same from front and back, so n is nothing but offset b/w frontIter and backItr
+    }
+    while(frontItr->Next not_eq nullptr)
+    {
+      frontItr = frontItr->Next;
+      backItr = backItr->Next;
+    }
+    return backItr;
+  }
+ 
+}
+
+Node* LinkedList::GetHeadNode()
+{
+  return Head;
+}
