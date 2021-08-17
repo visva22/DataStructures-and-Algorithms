@@ -15,8 +15,10 @@ class LinkedList
     void Preppend(int data);
     void Append(int data);
     void Display();
+    int Size();
   private:
   Node* CreateNode(int data);
   Node* Head;
   Node* Tail;
+  int Length;
 };

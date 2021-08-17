@@ -3,6 +3,7 @@
 LinkedList::LinkedList()
 : Head(nullptr)
 , Tail(nullptr)
+, Length(0)
 {
 }
 LinkedList::~LinkedList() = default;
@@ -20,6 +21,7 @@ void LinkedList::Preppend(int data)//O(n)
     node->Next = Head;
     Head = node;
   }
+  Length++;
 }
 
 void LinkedList::Append(int data)//O(1)
@@ -35,6 +37,7 @@ void LinkedList::Append(int data)//O(1)
     Tail->Next = node;
     Tail = node;
   }
+  Length++;
 }
 
 void LinkedList::Insert(int index, int data)//Time Complexicity O(n)
@@ -47,7 +50,8 @@ void LinkedList::Insert(int index, int data)//Time Complexicity O(n)
   else if(index == 0) // Case when node is to Append at index 0
   {
     node->Next = Head;
-    Head = node;
+    Head = node;  
+    Length++;
   }
   else 
   {
@@ -67,6 +71,7 @@ void LinkedList::Insert(int index, int data)//Time Complexicity O(n)
         temp = temp->Next;
       }
     }
+    Length++;
   }
 }
 
@@ -82,6 +87,7 @@ void LinkedList::Delete(int index) // O(n)
     Head = deleteNode->Next;
     deleteNode->Next = nullptr;
     delete deleteNode;
+    Length--;
   }
   else 
   {
@@ -95,12 +101,18 @@ void LinkedList::Delete(int index) // O(n)
         temp->Next = deleteNode->Next;
         deleteNode->Next = nullptr;
         delete deleteNode;
+        Length--;
         break;
       }
       indexItr++;
       temp = temp->Next;
     }
   }
+}
+
+int LinkedList::Size()
+{
+  return Length;
 }
 
 Node* LinkedList::CreateNode(int data)//O(1)
