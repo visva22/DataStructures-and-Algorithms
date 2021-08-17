@@ -7,7 +7,7 @@ LinkedList::LinkedList()
 }
 LinkedList::~LinkedList() = default;
 
-void LinkedList::Preppend(int data)
+void LinkedList::Preppend(int data)//O(n)
 {
   Node* node = CreateNode(data);
   if(Head == nullptr)
@@ -22,7 +22,88 @@ void LinkedList::Preppend(int data)
   }
 }
 
-Node* LinkedList::CreateNode(int data)
+void LinkedList::Append(int data)//O(1)
+{
+  Node* node = CreateNode(data);
+  if(Tail == nullptr)
+  {
+    Head = node;
+    Tail = node;
+  }
+  else
+  {
+    Tail->Next = node;
+    Tail = node;
+  }
+}
+
+void LinkedList::Insert(int index, int data)//Time Complexicity O(n)
+{
+  Node* node = CreateNode(data);
+  if(Head == nullptr and index not_eq 0) // Case when empty LinkedList
+  {
+    std::cout<< " Invalid Index: " << index << " List is Empty!!" << std::endl;
+  }
+  else if(index == 0) // Case when node is to Append at index 0
+  {
+    node->Next = Head;
+    Head = node;
+  }
+  else 
+  {
+    int indexItr = 1;
+    Node* temp = Head;
+    while(temp not_eq nullptr)
+    {
+      if(index == indexItr)
+      {
+        node->Next = temp->Next;
+        temp->Next = node;
+        break;
+      }
+      else
+      {
+        indexItr++;
+        temp = temp->Next;
+      }
+    }
+  }
+}
+
+void LinkedList::Delete(int index) // O(n)
+{
+  if(Head == nullptr ) // Case when empty LinkedList
+  {
+    std::cout<< " Nothing to delete, List is Empty!!" << std::endl;
+  }
+  else if(index == 0) // Case when node is to Append at index 0
+  {
+    Node * deleteNode = Head;
+    Head = deleteNode->Next;
+    deleteNode->Next = nullptr;
+    delete deleteNode;
+  }
+  else 
+  {
+    int indexItr = 1;
+    Node* temp = Head;
+    while(temp not_eq nullptr )
+    {
+      if(index == indexItr and temp->Next not_eq nullptr)
+      {
+        Node * deleteNode = temp ->Next;
+        temp->Next = deleteNode->Next;
+        deleteNode->Next = nullptr;
+        delete deleteNode;
+        break;
+      }
+      indexItr++;
+      temp = temp->Next;
+    }
+  }
+}
+
+Node* LinkedList::CreateNode(int data)//O(1)
 {
   Node* node = new Node();
   node->Data = data;
@@ -30,7 +111,7 @@ Node* LinkedList::CreateNode(int data)
   return node;
 }
 
-void LinkedList::Display()
+void LinkedList::Display() //O(n)
 {
   Node* temp = Head;
   while(temp not_eq nullptr)

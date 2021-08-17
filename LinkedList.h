@@ -10,7 +10,7 @@ class LinkedList
   public:
     LinkedList();
     ~LinkedList();
-    void Insert(int index);
+    void Insert(int index, int data);
     void Delete(int index);
     void Preppend(int data);
     void Append(int data);
