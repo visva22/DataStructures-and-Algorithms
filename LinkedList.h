@@ -12,11 +12,13 @@ class LinkedList
     ~LinkedList();
     void Insert(int index, int data);
     void Delete(int index);
-    void Preppend(int data);
+    void Push(int data);
     void Append(int data);
     void Display();
     int Size();
     int Size(Node* head);
+    int Pop();
+    int Peek();
     Node* GetHeadNode();
 
     //Algorihms

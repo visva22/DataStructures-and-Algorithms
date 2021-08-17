@@ -8,7 +8,7 @@ LinkedList::LinkedList()
 }
 LinkedList::~LinkedList() = default;
 
-void LinkedList::Preppend(int data)//O(n)
+void LinkedList::Push(int data)//O(n)
 {
   Node* node = CreateNode(data);
   if(Head == nullptr)
@@ -192,4 +192,30 @@ Node* LinkedList::NthNodeFromEnd(Node* head, int n)
 Node* LinkedList::GetHeadNode()
 {
   return Head;
+}
+
+int LinkedList::Pop()
+{
+  if(Head not_eq nullptr)
+  {
+    int data = Head->Data;
+    Node* temp = Head ;
+    Head = temp->Next;
+    temp->Next = nullptr;
+    delete temp;
+    return data;
+  }
+  else 
+  {
+    return -1;
+  }
+  
+}
+
+int LinkedList::Peek()
+{
+  if(Head not_eq nullptr)
+  return Head->Data;
+  else
+  return -1;
 }
