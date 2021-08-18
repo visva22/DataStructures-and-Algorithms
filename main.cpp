@@ -1,6 +1,7 @@
 #include <iostream>
 #include "LinkedList.h"
 #include "Stack.h"
+#include "BinaryTree.h"
 
 int main() {
   // std::cout << "linkedList1!\n";
@@ -43,4 +44,12 @@ int main() {
   stack.Peek();
 
   stack.TraverseItems();
+
+  BinaryTree tree;
+  tree.Insert(9);
+  tree.Insert(26);
+  tree.Insert(28);
+  tree.Insert(30);
+  tree.Insert(7);
+  tree.Traverse(tree.GetRoot());
 }
